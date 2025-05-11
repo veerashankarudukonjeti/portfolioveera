@@ -321,11 +321,16 @@
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbwGDMbx_N5HHkaduOxK7yRC9rMDREzmyfPOt9I2H-ZHBC8IJfHWMH1GQZw_1vcZyhw/exec'
   const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("")
 
   form.addEventListener('submit', e => {
     e.preventDefault()
     fetch(scriptURL, { method: 'POST', body: new FormData(form)})
-      .then(response => console.log('Success!', response))
+      .then(response => { msg.innerHTML="Message Sent Successfuly"
+                        setTimeout(function(){
+                          msg.innerHTML="" },5000)
+                         form.reset()
+                        })
       .catch(error => console.error('Error!', error.message))
   })
 </script>
